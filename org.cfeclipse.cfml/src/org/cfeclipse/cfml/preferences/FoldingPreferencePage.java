@@ -31,7 +31,7 @@ import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
-import org.eclipse.ui.help.WorkbenchHelp;
+import org.eclipse.ui.help.IWorkbenchHelpSystem;
 
 
 // Referenced classes of package org.eclipse.ui.internal.editors.text:
@@ -43,9 +43,9 @@ public class FoldingPreferencePage extends PreferencePage
 {
 
 	private OverlayPreferenceStore fOverlayStore = null;
-	private Map fCheckBoxes = null;
+	private Map<?, ?> fCheckBoxes = null;
 	private SelectionListener fCheckBoxListener = null;
-	private Map fTextFields = null;
+	private Map<?, ?> fTextFields = null;
 	private ModifyListener fTextFieldListener = null;
 	private ArrayList fNumberFields = null;
 	private ModifyListener fNumberFieldListener = null;
@@ -146,8 +146,8 @@ public class FoldingPreferencePage extends PreferencePage
 
 	public void createControl(Composite parent)
 	{
-		super.createControl(parent);
-		WorkbenchHelp.setHelp(getControl(), "org.eclipse.ui.text_editor_preference_page_context");
+		//super.createControl(parent);
+		IWorkbenchHelpSystem.setHelp(Control parent, "org.eclipse.ui.text_editor_preference_page_context");
 	}
 	
 	
@@ -164,7 +164,7 @@ public class FoldingPreferencePage extends PreferencePage
 		// Enable/Disable Code Folding
 		String label = "Enable code folding";
 		addCheckBox(appearanceComposite, label, FoldingPreferenceConstants.P_ENABLE_CODE_FOLDING, 4);
-		label = "Save fold state when saving document";
+		label = "Save fold state when saving documents";
 		addCheckBox(appearanceComposite, label, FoldingPreferenceConstants.P_PERSIST_FOLD_STATE, 4);
 
 		createTable(appearanceComposite);
